@@ -1,0 +1,46 @@
+name: Metrics
+on:
+  workflow_dispatch:
+  schedule:
+    # Runs once a day at midnight UTC
+    - cron: "0 0 * * *"
+  push:
+    branches:
+      - main
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: github-metrics.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: Sylvxnus
+          template: classic
+          base: header, activity, community, repositories
+
+          # Repos / stars / releases / license overview (top-left panel)
+          plugin_repositories: yes
+          plugin_repositories_featured: ""
+
+          # Language usage bar (bottom-left)
+          plugin_languages: yes
+          plugin_languages_analysis_timeout: 15
+          plugin_languages_categories: markup, programming
+          plugin_languages_recent_categories: markup, programming
+          plugin_languages_details: bytes-size, percentage
+          plugin_languages_limit: 8
+
+          # Commit activity per time of day / per day (coding habits)
+          plugin_habits: yes
+          plugin_habits_charts_type: classic
+          plugin_habits_days: 14
+          plugin_habits_facts: yes
+          plugin_habits_from: 200
+
+          # 3D isometric contributions calendar (top-right)
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: half-year
