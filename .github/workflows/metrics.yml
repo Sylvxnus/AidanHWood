@@ -34,16 +34,7 @@ jobs:
           plugin_languages_details: bytes-size, percentage
           plugin_languages_limit: 8
 
-          # Commit activity per time of day / per day (coding habits)
-          debug: yes
-          debug_flags: --error
-          plugin_habits: yes
-          plugin_habits_charts_type: classic
-          plugin_habits_days: 14
-          plugin_habits_charts: yes
-          plugin_habits_facts: no
-          plugin_habits_from: 200
-
+      
           # 3D isometric contributions calendar (top-right)
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
